@@ -1,0 +1,79 @@
+{{ $JS := resources.Match "js/**.js" | resources.Concat "js/bundle.js" }}
+{{ $JS := $JS | resources.Minify | resources.Fingerprint }}
+<script defer src="{{ $JS.Permalink }}"></script>
+
+{{ range .Site.Params.customJS }}
+{{ if strings.HasPrefix . "http" }}
+<script async src="{{ . }}"></script>
+{{ else }}
+<script async src="{{ $.Site.BaseURL }}{{ . }}"></script>
+{{ end }}
+{{ end }}
+
+<!-- load this when page is at /  -->
+{{ if eq .Permalink $.Site.BaseURL }}
+<script>
+document.addEventListener("DOMContentLoaded", 
+	function() {
+		// rolling bio
+		var roles = ["Amateur Wordsmith", "First Time Dad", "Cat Slave"].map(role => role.replace(/ /g, '\u00A0'));
+		var emojis = ["✏️", "👨‍👦", "🐈"];
+		var roleIndex = 0;
+		var charIndex = 0;
+
+		function typeRole() {
+			if (charIndex < roles[roleIndex].length) {
+				document.getElementById("role-desc").innerText += roles[roleIndex].charAt(charIndex);
+				charIndex++;
+				setTimeout(typeRole, 100);
+			} else if (charIndex === roles[roleIndex].length) {
+				document.getElementById("role-desc").innerText += ' ' + emojis[roleIndex];
+				charIndex++;
+				setTimeout(typeRole, 0);
+			} else {
+				// Pause before starting next role
+				setTimeout(function() {
+					document.getElementById("role-desc").innerText = '';
+					roleIndex = (roleIndex + 1) % roles.length;
+					charIndex = 0;
+					typeRole();
+				}, 2000); // Adjust pause duration here
+			}
+		}
+		typeRole();
+	},
+	false
+);
+</script>
+{{ end }}
+
+
+{{ if .Site.Params.enableGoogleAnalytics }}
+  {{ template "_internal/google_analytics_async.html" . }}
+{{ end }}
+
+{{ if .Site.Params.enableBaiduAnalytics }}
+<script>
+var baiduAnalytics = '{{ .Site.Params.baiduAnalytics }}';
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?" + baiduAnalytics;
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+{{ end }}
+
+<!-- Script netlify Identity Kicking back and login -->
+<script async>
+    if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+            if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                    document.location.href = "/admin/";
+                });
+            }
+        });
+    }
+</script>

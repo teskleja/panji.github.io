@@ -1,0 +1,39 @@
+<hr>
+<ul id="post-list">
+    {{ range where .Paginator.Pages "Params.hidden" "ne" "true" }}
+    {{ $url := replace .Permalink .Site.BaseURL "" }}
+        {{ if ne $url "about/" }}
+            <li>
+                <aside class="dates"> {{ .Date.Format "Jan 2" }} · {{ .ReadingTime }} Min </aside>
+                <a href='{{ .Permalink }}'>
+                    {{ .Title }}
+                    {{ if .Site.Params.enableSummary }}
+                        {{ if .Site.Params.useDescriptionReplaceSummary }}
+                            <h2>{{ .Description | plainify }}</h2>
+                        {{ else }}
+                            <h2>{{ .Summary | plainify | htmlUnescape }}</h2>
+                        {{ end }}
+                    {{ end }}
+                </a>
+            </li>
+        {{ end }}
+    {{ end }}
+</ul>
+<nav id="post-nav">
+    {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
+        {{ if .Paginator.HasPrev }}
+        <span class="prev">
+            <a href="{{.Paginator.Prev.URL}}">
+                <span class="arrow">←</span> {{ with .Site.Params.newerPosts }}{{ . }}{{ else }}Newer Posts{{ end }}
+            </a>
+        </span>
+        {{ end }}
+        {{ if .Paginator.HasNext }}
+        <span class="next">
+            <a href="{{.Paginator.Next.URL}}">
+                {{ with .Site.Params.olderPosts }}{{ . }}{{ else }}Older Posts{{ end }} <span class="arrow">→</span>
+            </a>
+        </span>
+        {{ end }}
+    {{ end }}
+</nav>

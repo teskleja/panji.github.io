@@ -1,0 +1,11 @@
+<a class="twitter"
+	href="https://twitter.com/intent/tweet?text={{ .Permalink }} - {{ .LinkTitle }} {{ with .Site.Params.twitter }}by @{{ . }}{{ end }}">&nbsp;<span
+		class="icon-twitter"> {{ .Site.Params.tweet | default "tweet" }}</span></a> &nbsp; | &nbsp;
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;">&nbsp;<span class="icon-facebook"> {{ .Site.Params.share | default "Share" }}</span>
+</a>

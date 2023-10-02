@@ -1,0 +1,28 @@
+{{ $image := resources.Get "images/avatar.jpeg" }}
+{{ $smallImage := $image.Resize "1x1 q1 Box webp" }}
+{{ $image = $image.Resize "130x q80 Box webp" }}
+
+<div class="profile">
+    <section id="wrapper-prof">
+        <header id="header">
+            <a href='{{ with .Site.Params.avatarLink }}{{ . }}{{ else }}{{ .Site.BaseURL }}now{{ end }}'>
+				<div class="image_placeholder">
+					{{ with $image }}
+						<div class="placeholder" data-large="{{ .RelPermalink }}" data-alt="profile pict">
+							<img id="avatar" src="{{ $smallImage.RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"  class="img-small 2x lazy" alt="Profile Picture" loading="lazy">
+						</div>
+					{{ end }}
+				</div>
+            </a>
+			<br>
+			
+			<div class="typewriter">
+				<h1>&#8618;	{{ .Site.Title }} A
+				<!-- foreach .Site.bio -->
+				<span id="role-desc">
+				</span>
+				</h1>
+			</div>	
+        </header>
+    </section>
+</div>

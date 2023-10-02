@@ -1,0 +1,11 @@
+{{ with .Site.GoogleAnalytics }}
+<script>
+    window.ga = window.ga || function () {
+        (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', '{{ . }}', 'auto');
+    ga('send', 'pageview');
+</script>
+<script rel="preconnect" src='//www.google-analytics.com/analytics.js' crossorigin="anonymous"></script>
+{{ end }}

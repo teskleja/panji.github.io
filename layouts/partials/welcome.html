@@ -1,0 +1,11 @@
+<div class="welcome-description">
+  <p>He/Him. <span id="age"></span> &nbsp; y/o Web Developer. Love code and talk.
+  	More about me on <a>Now</a>. My thought visible on <a>Blogs</a>. ◔_◔!</p>
+</div>
+<script>
+const getAge = birthDate => Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e+10)
+// today is 2018-06-13
+let age = getAge('1994-11-03') // 23
+let agePlaceholder = document.getElementById("age")
+agePlaceholder.append(age)
+</script>

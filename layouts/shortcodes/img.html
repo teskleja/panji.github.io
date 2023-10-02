@@ -1,0 +1,20 @@
+{{ $image := resources.Get .Params.src }}
+{{ $smallImage := $image.Resize "1x1 q1 Box webp" }}
+{{ $newWidth := mul 0.7 $image.Width | int }}
+{{ $newHeight := mul 0.7 $image.Height | int }}
+{{ $image = $image.Resize (print $newWidth "x" $newHeight " q50 Box webp") }}
+
+{{ $alt := "" }}
+{{ if eq .Params.title nil }}
+	{{ $alt = "Example image" }}
+{{ else }}
+	{{ $alt = .Params.title }}
+{{ end }}
+
+{{ with $image }}
+<div class="image_placeholder">
+	<div class="placeholder" data-large="{{ .RelPermalink }}" data-alt="{{ $alt }}">
+		<img src="{{ $smallImage.RelPermalink  }}" width="{{ .Width }}" height="{{ .Height }}" class="img-small lazy" alt="{{ $alt }}" loading="lazy">
+	</div>
+</div>
+{{ end }}

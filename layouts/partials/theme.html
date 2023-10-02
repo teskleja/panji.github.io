@@ -1,0 +1,7 @@
+<script>
+	// immediately invoked function to set the theme on initial load
+	(function () {
+		var darkThemeSelected = localStorage.getItem('preferredTheme') === 'dark';
+		darkThemeSelected ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode');
+	})();
+</script>

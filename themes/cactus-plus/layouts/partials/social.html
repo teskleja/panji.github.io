@@ -1,0 +1,25 @@
+<div id="social">
+<!-- {{ if eq .Site.Params.iconFont "font-awesome" }}
+	
+	{{ range $key, $val := .Site.Social }}
+    <a class="symbol" href="{{ $val }}" aria-label="{{ $key }}" alt="view {{ $key }} profile">
+        <i class="fa fa-{{ $key }}"></i>
+    </a>
+    {{ end }}
+
+{{ else }}
+	
+	{{ $iconStyle := .Site.Params.socialIconStyle }}
+    {{ range $key, $val := .Site.Social }}
+    <a class="symbol" href="{{ $val }}">
+        {{ $iconStyle }}{{ if eq $key "twitter" }}twitterbird{{ else }}{{ $key }}{{ end }}
+    </a>
+    {{ end }}
+
+{{ end }} -->
+    <!-- <div id="post-body">
+        <p>
+            Follow me on Twitter <a href="https://twitter.com/@amQnese">@amQnese</a> or Mastodon <a rel="me" href="https://fosstodon.org/@arhen">@arhen@fosstodon.org</a>
+        </p>
+    </div> -->
+</div>

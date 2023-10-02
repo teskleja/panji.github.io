@@ -1,0 +1,87 @@
+# Site settings
+baseurl = "https://pandjie.netlify.app/"
+languageCode = "id-ID"
+title = "Hi, I am Panji."
+
+theme = "cactus-plus"
+
+# googleAnalytics = "UA-00000000-1"
+# Set the value to true if your site include CJK (Chinese, Japanese, and Korean languages) characters
+hasCJKLanguage = false
+
+# pagination
+paginate = 3
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+	author = "panji"
+	description = "This is Panji Personal Website, known as Jipang."
+	bio = "'Sharing is Caring'"
+	desc = ["Amateur Wordsmith", "First Time Father", "Cat Slave"]
+
+	instagram = "panjipeg"
+
+	enableRSS = false
+	enableToc = false
+
+	enableDisqus = false
+	disqusShortname = "panji"
+
+
+	enableSummary = true
+	# Set the value to true if use description in post front matter replace content summary
+	useDescriptionReplaceSummary = true
+
+
+	enableGoogleAnalytics = false
+
+	enableTwitterCard = true
+	# The url for twitter card image, default is avatar.png in static/images directory
+	# twitterCardImage = "images/avatar.jpg"
+
+	# Add custom assets with their paths relative to the static folder
+	customCSS = ['https://cdn.bootcdn.net/ajax/libs/prism-themes/1.9.0/prism-atom-dark.min.css']
+	customJS  = ['https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js']
+
+	# The variables below are optionally too and can be used to
+	# translate or customize each string of the theme.
+
+	# Navigation links
+	home = ""
+	about = ""
+	now = ""
+	blogs = ""
+	tags = ""
+	subscribe = ""
+
+	olderPosts = ""
+	newerPosts = ""
+	copyright = ""
+
+	# show latest posts in single page
+	showLatestPosts = false
+	readMore = ""
+
+	# Share
+	enableShare = true
+	tweet = ""
+	share = ""
+
+	# 404 page
+	title404 = "Opps! This place is called 404."
+	subtitle404 = "You entered in the wrong room buddy! Go back."
+
+	# Choose a font for the social icons in the footer. Either "mono-social" or "font-awesome"
+	iconFont = "mono-social"
+    # The social icons can be styled differently if you use mono as font - circle, rounded, or empty
+    socialIconStyle = "empty"
+
+# Add additional social link entries underneath
+[social]
+	twitter = "https://www.twitter.com/jipanjie"
+	github = "https://www.github.com/panjiweb"
+	linkedin = "https://www.linkedin.com/in/"
